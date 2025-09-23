@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>专利交底书写作助手</title>
+    <style>
+        /* 基础样式 */
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        /* 左侧导航栏 */
+        #sidebar {
+            width: 250px;
+            background-color: #f5f7fa;
+            padding: 20px;
+            box-sizing: border-box;
+            border-right: 1px solid #ddd;
+            overflow-y: auto;
+            position: fixed;
+            height: 100vh;
+        }
+        #sidebar h2 {
+            margin-top: 0;
+            color: #2c3e50;
+        }
+        #sidebar ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        #sidebar li {
+            margin-bottom: 10px;
+        }
+        #sidebar a {
+            text-decoration: none;
+            color: #34495e;
+            display: block;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        #sidebar a:hover, #sidebar a.active {
+            background-color: #3498db;
+            color: white;
+        }
+        /* 右侧内容区 */
+        #content {
+            flex: 1;
+            margin-left: 250px; /* 与sidebar宽度一致 */
+            padding: 30px;
+            box-sizing: border-box;
+        }
+        .section {
+            display: none; /* 默认全部隐藏 */
+            margin-bottom: 40px;
+        }
+        .section.active {
+            display: block; /* 激活的部分显示 */
+        }
+        h3 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 5px;
+        }
+        .tip-box {
+            background-color: #e8f4fd;
+            border-left: 4px solid #3498db;
+            padding: 10px 15px;
+            margin: 15px 0;
+        }
+        .example-box {
+            background-color: #f9f9f9;
+            border: 1px dashed #ccc;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            position: relative;
+        }
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.8em;
+        }
+        .copy-btn:hover {
+            background: #219653;
+        }
+        /* 申请流程样式 */
+        .process-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            border: 1px solid rgba(224, 224, 224, 0.5);
+            margin: 20px 0;
+        }
+        .process-header {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .process-header h4 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .process-header p {
+            margin: 5px 0 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .process-steps {
+            padding: 20px;
+        }
+        .process-step {
+            display: flex;
+            margin-bottom: 20px;
+            position: relative;
+            animation: fadeInUp 0.6s ease-out;
+        }
+        .process-step:last-child {
+            margin-bottom: 0;
+        }
+        .step-number {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            font-weight: bold;
+            margin-right: 16px;
+            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+        .step-content {
+            flex: 1;
+            background: rgba(248, 249, 250, 0.8);
+            padding: 16px;
+            border-radius: 8px;
+            border: 1px solid rgba(224, 224, 224, 0.5);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        .step-content:hover {
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.15);
+            transform: translateY(-1px);
+            border-color: rgba(52, 152, 219, 0.3);
+        }
+        .step-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        .step-description {
+            color: #34495e;
+            line-height: 1.6;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        .step-responsible {
+            display: inline-block;
+            padding: 4px 10px;
+            background: rgba(52, 152, 219, 0.1);
+            color: #3498db;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .process-step:not(:last-child) .step-content::after {
+            content: '';
+            position: absolute;
+            left: -28px;
+            top: 40px;
+            bottom: -20px;
+            width: 2px;
+            background: linear-gradient(to bottom, #3498db, #e3f2fd);
+            z-index: 1;
+        }
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* 输入框样式 */
+        .input-section {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .input-section h4 {
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        .input-field {
+            width: 100%;
+            min-height: 100px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Microsoft YaHei', sans-serif;
+            font-size: 14px;
+            line-height: 1.6;
+            resize: vertical;
+            box-sizing: border-box;
+        }
+        .input-field:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+        .input-field.short {
+            min-height: 40px;
+        }
+        /* 输出功能样式 */
+        .export-buttons {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .export-btn {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .export-btn:hover {
+            background: linear-gradient(135deg, #219a52 0%, #27ae60 100%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+        }
+        .export-btn.secondary {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        }
+        .export-btn.secondary:hover {
+            background: linear-gradient(135deg, #2980b9 0%, #1f4e79 100%);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 左侧导航 -->
+    <nav id="sidebar">
+        <h2>📝 专利写作助手</h2>
+        <ul>
+            <li><a href="#intro" class="nav-link active">引言</a></li>
+            <li><a href="#process" class="nav-link">申请流程</a></li>
+            <li><a href="#disclosure" class="nav-link">《专利交底书》撰写</a></li>
+            <li><a href="#templates" class="nav-link">模板速查</a></li>
+            <li><a href="#export" class="nav-link">输出文档</a></li>
+        </ul>
+    </nav>
+
+    <!-- 右侧内容 -->
+    <main id="content">
+        <!-- 引言部分 -->
+        <section id="intro" class="section active">
+            <h3>欢迎使用专利写作助手</h3>
+            <p>本工具旨在帮助您快速、规范地完成专利交底书的撰写。请根据左侧导航，查看各部分的写作指南和技巧。</p>
+            <div class="tip-box">
+                <strong>核心目标：</strong> 清晰、完整地披露您的技术创新，使本领域的技术人员能够根据您的描述实现该技术。
+            </div>
+        </section>
+
+        <!-- 申请流程部分 -->
+        <section id="process" class="section">
+            <h3>专利申请流程</h3>
+            <p>以下是公司标准化的专利申请流程，请按照步骤有序进行：</p>
+            
+            <div class="process-container">
+                <div class="process-header">
+                    <h4>专利申请流程图</h4>
+                    <p>标准化、可视化的专利管理流程</p>
+                </div>
+                
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <div class="step-title">创建专利专项项目</div>
+                            <div class="step-description">
+                                确认专利任务后，由专利申请人在钉钉的Teambition工具上创建专利专项项目，明确责任人、目标与时间节点，并纳入相关人员。
+                            </div>
+                            <span class="step-responsible">责任人：专利申请人</span>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <div class="step-title">撰写《专利交底书》初稿</div>
+                            <div class="step-description">
+                                申请人撰写《专利交底书》初稿。
+                            </div>
+                            <span class="step-responsible">责任人：专利申请人</span>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <div class="step-title">组织线上评审</div>
+                            <div class="step-description">
+                                初稿完成后，由申请人在Teambition上创建"专利交底书评审"任务，组织线上评审。
+                            </div>
+                            <span class="step-responsible">责任人：专利申请人</span>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <div class="step-title">完成评审任务</div>
+                            <div class="step-description">
+                                经专利项目组成员确认无异议，并由研发中心专利管理员审核后，完成评审任务。
+                            </div>
+                            <span class="step-responsible">责任人：专利管理员</span>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <div class="step-title">提交给专利代理</div>
+                            <div class="step-description">
+                                专利管理员对交底书编号、更新专利列表，通过邮件提交给专利代理（抄送申请人、部门负责人和中心总监），并在Teambition上创建任务跟进。
+                            </div>
+                            <span class="step-responsible">责任人：专利管理员</span>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <div class="step-title">协同完成修改</div>
+                            <div class="step-description">
+                                申请人协同专利代理完成修改，必要时请部门负责人或专家协助。
+                            </div>
+                            <span class="step-responsible">责任人：专利申请人</span>
+                        </div>
+                    </div>
+
+                    <div class="process-step">
+                        <div class="step-number">7</div>
+                        <div class="step-content">
+                            <div class="step-title">最终确认并发送</div>
+                            <div class="step-description">
+                                专利管理员最终确认《发明专利申请》及相关信息，发送给专利代理。
+                            </div>
+                            <span class="step-responsible">责任人：专利管理员</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 专利交底书撰写部分 -->
+        <section id="disclosure" class="section">
+            <h3>《专利交底书》撰写</h3>
+            <p>请按照以下各部分要求，填写您的专利交底书内容：</p>
+
+            <!-- 发明名称 -->
+            <div class="input-section">
+                <h4>1. 发明名称</h4>
+                <p><strong>作用：</strong> 简单明了地反映发明的核心内容和技术领域。</p>
+                <div class="tip-box">
+                    <strong>写作技巧：</strong>
+                    <ul>
+                        <li>采用"一种...[产品/方法]..."的句式。</li>
+                        <li>避免使用宣传性、修饰性词语（如"卓越的"、"革命性的"）。</li>
+                        <li>一般不超过25个字。</li>
+                    </ul>
+                </div>
+                <textarea id="invention-name" class="input-field short" placeholder="请输入您的发明名称，例如：一种基于等温扩增法检测鹦鹉热衣原体的引物组合及试剂盒"></textarea>
+                <div class="example-box">
+                    <strong>参考示例：</strong>
+                    <p id="name-example">一种基于等温扩增法检测鹦鹉热衣原体的引物组合及试剂盒</p>
+                    <button class="copy-btn" onclick="copyToClipboard('name-example')">复制</button>
+                </div>
+            </div>
+
+            <!-- 技术领域 -->
+            <div class="input-section">
+                <h4>2. 技术领域</h4>
+                <p><strong>作用：</strong> 说明本发明所属的具体技术领域。</p>
+                <div class="tip-box">
+                    <strong>写作技巧：</strong> 直接点明，不要过于宽泛。通常1-2句话即可。
+                </div>
+                <textarea id="technical-field" class="input-field" placeholder="请输入技术领域描述，例如：本发明属于生物检测技术领域，涉及一种基于等温扩增法检测鹦鹉热衣原体的引物组合及试剂盒。"></textarea>
+                <div class="example-box">
+                    <strong>参考示例：</strong>
+                    <p id="field-example">本发明属于生物检测技术领域，涉及一种基于等温扩增法检测鹦鹉热衣原体的引物组合及试剂盒。</p>
+                    <button class="copy-btn" onclick="copyToClipboard('field-example')">复制</button>
+                </div>
+            </div>
+
+            <!-- 背景技术 -->
+            <div class="input-section">
+                <h4>3. 背景技术</h4>
+                <p><strong>作用：</strong> 描述现有技术的不足，引出本发明的动机。</p>
+                <div class="tip-box">
+                    <strong>写作技巧：</strong>
+                    <ul>
+                        <li>客观陈述1-2种最相关的现有技术方案。</li>
+                        <li>重点分析其<strong>存在的缺点和局限性</strong>（为什么需要本发明？）。</li>
+                        <li>可以引用一些专利或文献号。</li>
+                    </ul>
+                </div>
+                <textarea id="background" class="input-field" placeholder="请描述现有技术的不足和局限性，引出本发明的必要性。"></textarea>
+                <div class="example-box">
+                    <strong>参考示例：</strong>
+                    <p id="background-example">鹦鹉热衣原体主要通过患病鸟类、禽类传播给人类，感染后表现为高热、恶寒、头痛、肌痛、咳嗽等特征。早期检测主要采用病原体分离鉴定，但试验时间久、操作繁琐。分子诊断技术如PCR虽然特异性高，但成本高、易污染。等温扩增技术如LAMP、RAA虽然操作简单，但需要开盖检测，易产生气溶胶污染，且无法区分非特异性扩增。</p>
+                    <button class="copy-btn" onclick="copyToClipboard('background-example')">复制</button>
+                </div>
+            </div>
+
+            <!-- 发明内容 -->
+            <div class="input-section">
+                <h4>4. 发明内容（核心）</h4>
+                <p><strong>作用：</strong> 清晰、完整地说明本发明要解决的技术问题，以及如何解决的。</p>
+                <div class="tip-box">
+                    <strong>写作结构：</strong>
+                    <ol>
+                        <li><strong>要解决的技术问题：</strong> 基于背景技术中的不足，用一句话概括。</li>
+                        <li><strong>技术方案：</strong> 这是交底书的灵魂。分层次、抓重点。说明系统由哪些模块组成，或方法包含哪些步骤，并突出<strong>核心创新点</strong>。</li>
+                        <li><strong>有益效果：</strong> 说明本发明带来的好处，最好能具体、量化。</li>
+                    </ol>
+                </div>
+                <textarea id="invention-content" class="input-field" placeholder="请详细描述您的技术方案，包括要解决的技术问题、具体的技术方案和有益效果。"></textarea>
+                <div class="example-box">
+                    <strong>技术方案示例：</strong>
+                    <p id="solution-example">为解决上述问题，本发明提供了一种基于等温扩增法检测鹦鹉热衣原体的引物组合及试剂盒。其核心创新在于结合CRISPR/Cas系统与等温扩增技术，通过人工设计的gRNA引导Cas12b蛋白特异性识别等温扩增产物，实现一步法闭管检测。该方法主要包括：特异性等温扩增引物组（F3、B3、FIP、BIP、LF、LB）和gRNA序列，反应缓冲液包含DNA荧光报告探针，酶mix包含Bst DNA聚合酶和Cas12b核酸酶。整个检测过程在65℃下30分钟内完成，具有快速、高效、特异性强的特点。</p>
+                    <button class="copy-btn" onclick="copyToClipboard('solution-example')">复制</button>
+                </div>
+            </div>
+
+            <!-- 权利要求 -->
+            <div class="input-section">
+                <h4>5. 权利要求</h4>
+                <p><strong>作用：</strong> 明确专利保护的范围，是专利权的核心部分。</p>
+                <div class="tip-box">
+                    <strong>写作技巧：</strong>
+                    <ul>
+                        <li>独立权利要求：描述完整的技术方案，包含所有必要技术特征。</li>
+                        <li>从属权利要求：对独立权利要求进行进一步限定或补充。</li>
+                        <li>使用"其特征在于"来区分现有技术和本发明的区别。</li>
+                        <li>避免功能性描述，要具体、明确。</li>
+                    </ul>
+                </div>
+                <textarea id="claims" class="input-field" placeholder="请描述您的权利要求，包括独立权利要求和从属权利要求。"></textarea>
+                <div class="example-box">
+                    <strong>参考示例：</strong>
+                    <p id="claims-example">1. 一种基于等温扩增法检测鹦鹉热衣原体的引物组合，其特征在于，所述引物组合包括一组特异性等温扩增引物和一条gRNA序列；所述特异性等温扩增引物包括引物F3、引物B3、引物FIP、引物BIP、引物LB和引物LF；所述gRNA序列为5'-AAUGUAGAUGGUUAGCACAAGCCCAGCACAAUUUGUGA-3'。</p>
+                    <button class="copy-btn" onclick="copyToClipboard('claims-example')">复制</button>
+                </div>
+            </div>
+
+            <!-- 具体实施方式 -->
+            <div class="input-section">
+                <h4>6. 具体实施方式</h4>
+                <p><strong>作用：</strong> 对技术方案的进一步细化，使本领域技术人员能够实现。</p>
+                <div class="tip-box">
+                    <strong>写作技巧：</strong> 结合附图，详细说明每个部件的作用、每个步骤的具体操作、以及可能用到的具体参数、材料、算法等。<strong>这部分要尽可能详细，像一份实验报告。</strong>
+                </div>
+                <textarea id="embodiments" class="input-field" placeholder="请详细描述具体实施方式，包括系统组成、操作步骤、参数设置等。"></textarea>
+                <div class="example-box">
+                    <strong>参考示例：</strong>
+                    <p id="embodiment-example">以下结合附图对本发明做进一步说明。如图1所示，该检测系统包括样本处理模块、等温扩增模块、CRISPR检测模块和结果分析模块。其中，等温扩增模块采用LAMP技术，反应温度为65℃，反应时间为30分钟；CRISPR检测模块使用Cas12b蛋白，浓度为0.5μg/反应；结果分析模块通过荧光信号检测，终点荧光信号值高于10000判定为阳性...</p>
+                    <button class="copy-btn" onclick="copyToClipboard('embodiment-example')">复制</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 模板速查部分 -->
+        <section id="templates" class="section">
+            <h3>模板速查</h3>
+            <p>这里提供一些常用的句式模板，方便您快速组织语言。</p>
+            <div class="example-box">
+                <strong>技术问题模板：</strong>
+                <p id="template-problem">本发明的目的在于克服现有技术的不足，提供一种[技术领域]的[产品/方法]，以解决现有技术中存在的[具体问题1]、[具体问题2]等问题。</p>
+                <button class="copy-btn" onclick="copyToClipboard('template-problem')">复制</button>
+            </div>
+            <div class="example-box">
+                <strong>技术方案开头模板：</strong>
+                <p id="template-solution">为实现上述目的，本发明采用如下技术方案：一种[产品名称]，其特征在于，包括[部件A]、[部件B]和[部件C]；所述[部件A]与[部件B]相连接，用于实现[功能描述]...</p>
+                <button class="copy-btn" onclick="copyToClipboard('template-solution')">复制</button>
+            </div>
+            <div class="example-box">
+                <strong>有益效果模板：</strong>
+                <p id="template-effect">与现有技术相比，本发明的有益效果是：1）通过采用[创新点1]，实现了[效果1]；2）由于设计了[创新点2]，从而提高了[效果2]...</p>
+                <button class="copy-btn" onclick="copyToClipboard('template-effect')">复制</button>
+            </div>
+        </section>
+
+        <!-- 输出文档部分 -->
+        <section id="export" class="section">
+            <h3>输出文档</h3>
+            <p>完成专利交底书撰写后，您可以导出为HTML预览或下载为Word文档格式。</p>
+            
+            <div class="export-buttons">
+                <button class="export-btn" onclick="previewHTML()">📄 HTML预览</button>
+                <button class="export-btn secondary" onclick="downloadDoc()">📥 下载Word文档</button>
+            </div>
+
+            <div id="preview-container" style="display: none; margin-top: 20px;">
+                <h4>专利交底书预览</h4>
+                <div id="preview-content" style="background: white; padding: 20px; border: 1px solid #ddd; border-radius: 8px; max-height: 600px; overflow-y: auto;"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // 导航点击事件
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                // 移除所有active类
+                document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+                // 为当前点击的链接和对应的部分添加active类
+                this.classList.add('active');
+                const targetId = this.getAttribute('href').substring(1); // 去掉#号
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+
+        // 复制到剪贴板功能
+        function copyToClipboard(elementId) {
+            const textToCopy = document.getElementById(elementId).innerText;
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                // 可以在这里添加一个提示，比如alert('已复制！');
+                console.log('文本已复制: ', textToCopy);
+            }).catch(err => {
+                console.error('复制失败: ', err);
+            });
+        }
+
+        // 获取所有输入内容
+        function getAllInputs() {
+            return {
+                inventionName: document.getElementById('invention-name').value,
+                technicalField: document.getElementById('technical-field').value,
+                background: document.getElementById('background').value,
+                inventionContent: document.getElementById('invention-content').value,
+                claims: document.getElementById('claims').value,
+                embodiments: document.getElementById('embodiments').value
+            };
+        }
+
+        // HTML预览功能
+        function previewHTML() {
+            const inputs = getAllInputs();
+            const previewContent = document.getElementById('preview-content');
+            const previewContainer = document.getElementById('preview-container');
+            
+            let html = `
+                <div style="font-family: 'Microsoft YaHei', sans-serif; line-height: 1.8;">
+                    <h1 style="text-align: center; color: #2c3e50; margin-bottom: 30px;">专利交底书</h1>
+                    
+                    <h2 style="color: #3498db; border-bottom: 2px solid #3498db; padding-bottom: 5px;">1. 发明名称</h2>
+                    <p style="margin: 15px 0; font-size: 16px;">${inputs.inventionName || '（请填写发明名称）'}</p>
+                    
+                    <h2 style="color: #3498db; border-bottom: 2px solid #3498db; padding-bottom: 5px;">2. 技术领域</h2>
+                    <p style="margin: 15px 0;">${inputs.technicalField || '（请填写技术领域）'}</p>
+                    
+                    <h2 style="color: #3498db; border-bottom: 2px solid #3498db; padding-bottom: 5px;">3. 背景技术</h2>
+                    <p style="margin: 15px 0;">${inputs.background || '（请填写背景技术）'}</p>
+                    
+                    <h2 style="color: #3498db; border-bottom: 2px solid #3498db; padding-bottom: 5px;">4. 发明内容</h2>
+                    <p style="margin: 15px 0;">${inputs.inventionContent || '（请填写发明内容）'}</p>
+                    
+                    <h2 style="color: #3498db; border-bottom: 2px solid #3498db; padding-bottom: 5px;">5. 权利要求</h2>
+                    <p style="margin: 15px 0;">${inputs.claims || '（请填写权利要求）'}</p>
+                    
+                    <h2 style="color: #3498db; border-bottom: 2px solid #3498db; padding-bottom: 5px;">6. 具体实施方式</h2>
+                    <p style="margin: 15px 0;">${inputs.embodiments || '（请填写具体实施方式）'}</p>
+                </div>
+            `;
+            
+            previewContent.innerHTML = html;
+            previewContainer.style.display = 'block';
+            
+            // 滚动到预览区域
+            previewContainer.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 下载Word文档功能
+        function downloadDoc() {
+            const inputs = getAllInputs();
+            
+            // 检查是否有内容
+            const hasContent = Object.values(inputs).some(value => value.trim() !== '');
+            if (!hasContent) {
+                alert('请先填写专利交底书内容！');
+                return;
+            }
+            
+            // 创建HTML内容用于转换为Word
+            const htmlContent = `
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <style>
+                        body { font-family: 'Microsoft YaHei', sans-serif; line-height: 1.8; margin: 40px; }
+                        h1 { text-align: center; color: #2c3e50; margin-bottom: 30px; }
+                        h2 { color: #3498db; border-bottom: 2px solid #3498db; padding-bottom: 5px; }
+                        p { margin: 15px 0; }
+                    </style>
+                </head>
+                <body>
+                    <h1>专利交底书</h1>
+                    
+                    <h2>1. 发明名称</h2>
+                    <p>${inputs.inventionName || '（请填写发明名称）'}</p>
+                    
+                    <h2>2. 技术领域</h2>
+                    <p>${inputs.technicalField || '（请填写技术领域）'}</p>
+                    
+                    <h2>3. 背景技术</h2>
+                    <p>${inputs.background || '（请填写背景技术）'}</p>
+                    
+                    <h2>4. 发明内容</h2>
+                    <p>${inputs.inventionContent || '（请填写发明内容）'}</p>
+                    
+                    <h2>5. 权利要求</h2>
+                    <p>${inputs.claims || '（请填写权利要求）'}</p>
+                    
+                    <h2>6. 具体实施方式</h2>
+                    <p>${inputs.embodiments || '（请填写具体实施方式）'}</p>
+                </body>
+                </html>
+            `;
+            
+            // 创建Blob并下载
+            const blob = new Blob([htmlContent], { type: 'application/msword' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `专利交底书_${inputs.inventionName || '未命名'}.doc`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            alert('文档下载成功！');
+        }
+    </script>
+</body>
+</html>
