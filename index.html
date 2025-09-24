@@ -267,6 +267,287 @@
             background: linear-gradient(135deg, #2980b9 0%, #1f4e79 100%);
             box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
         }
+        /* FAQ样式 */
+        .faq-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            border: 1px solid rgba(224, 224, 224, 0.5);
+            margin: 20px 0;
+        }
+        .faq-item {
+            border-bottom: 1px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        .faq-question {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        .faq-question:hover {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left-color: #3498db;
+        }
+        .faq-question.active {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border-left-color: #3498db;
+        }
+        .faq-question h4 {
+            margin: 0;
+            color: #2c3e50;
+            font-size: 16px;
+            font-weight: 600;
+            flex: 1;
+            padding-right: 15px;
+        }
+        .faq-icon {
+            font-size: 18px;
+            color: #3498db;
+            transition: transform 0.3s ease;
+        }
+        .faq-question.active .faq-icon {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+        }
+        .faq-answer.active {
+            padding: 20px;
+            max-height: 1000px;
+        }
+        .faq-answer p {
+            margin: 0 0 15px 0;
+            color: #34495e;
+            line-height: 1.7;
+        }
+        .faq-answer p:last-child {
+            margin-bottom: 0;
+        }
+        .faq-answer ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .faq-answer li {
+            margin-bottom: 8px;
+            color: #34495e;
+            line-height: 1.6;
+        }
+        .faq-highlight {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .faq-warning {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .faq-info {
+            background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        /* 撰写前准备样式 */
+        .preparation-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            border: 1px solid rgba(224, 224, 224, 0.5);
+            margin: 20px 0;
+        }
+        .preparation-header {
+            background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .preparation-header h4 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        .preparation-header p {
+            margin: 5px 0 0 0;
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .preparation-content {
+            padding: 20px;
+        }
+        .preparation-step {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #27ae60;
+        }
+        .preparation-step h5 {
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .preparation-step ul {
+            margin: 10px 0;
+            padding-left: 20px;
+        }
+        .preparation-step li {
+            margin-bottom: 8px;
+            color: #34495e;
+            line-height: 1.6;
+        }
+        .preparation-step strong {
+            color: #2c3e50;
+        }
+        .preparation-highlight {
+            background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .preparation-warning {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .preparation-info {
+            background: linear-gradient(135deg, #d1ecf1 0%, #bee5eb 100%);
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+        .website-list {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        .website-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .website-item:last-child {
+            border-bottom: none;
+        }
+        .website-name {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        .website-url {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .website-url:hover {
+            text-decoration: underline;
+        }
+        .website-description {
+            color: #6c757d;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+        .template-section {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .template-section h5 {
+            color: #2c3e50;
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .template-content {
+            background: white;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            padding: 15px;
+            margin: 10px 0;
+        }
+        .template-content h6 {
+            color: #495057;
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        .template-content p {
+            margin: 8px 0;
+            color: #6c757d;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .template-content ul {
+            margin: 8px 0;
+            padding-left: 20px;
+        }
+        .template-content li {
+            margin-bottom: 5px;
+            color: #6c757d;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .patent-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: white;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .patent-table th {
+            background: #3498db;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .patent-table td {
+            padding: 12px;
+            border-bottom: 1px solid #e9ecef;
+            font-size: 13px;
+            line-height: 1.4;
+        }
+        .patent-table tr:last-child td {
+            border-bottom: none;
+        }
+        .patent-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
     </style>
 </head>
 <body>
@@ -277,8 +558,10 @@
         <ul>
             <li><a href="#intro" class="nav-link active">引言</a></li>
             <li><a href="#process" class="nav-link">申请流程</a></li>
+            <li><a href="#preparation" class="nav-link">撰写前的准备</a></li>
             <li><a href="#disclosure" class="nav-link">《专利交底书》撰写</a></li>
             <li><a href="#templates" class="nav-link">模板速查</a></li>
+            <li><a href="#faq" class="nav-link">专利申请FAQ</a></li>
             <li><a href="#export" class="nav-link">输出文档</a></li>
         </ul>
     </nav>
@@ -311,7 +594,7 @@
                         <div class="step-content">
                             <div class="step-title">创建专利专项项目</div>
                             <div class="step-description">
-                                确认专利任务后，由专利申请人在钉钉的Teambition工具上创建专利专项项目，明确责任人、目标与时间节点，并纳入相关人员。
+                                确认专利任务后，由专利申请人在钉钉的Teambition工具上创建专利专项项目，明确责任人、目标与时间节点，并纳入相关人员。进入专利撰写前的准备，非常重要的是明确创新点和查询类似专利。
                             </div>
                             <span class="step-responsible">责任人：专利申请人</span>
                         </div>
@@ -333,7 +616,7 @@
                         <div class="step-content">
                             <div class="step-title">组织线上评审</div>
                             <div class="step-description">
-                                初稿完成后，由申请人在Teambition上创建"专利交底书评审"任务，组织线上评审。
+                                交底书初稿完成后，由申请人在Teambition上创建"专利交底书评审"任务，组织线上评审。（需上传3个文件，包括 技术创新说明、 相关现有技术专利文献列表、专利交底书初稿）
                             </div>
                             <span class="step-responsible">责任人：专利申请人</span>
                         </div>
@@ -382,6 +665,225 @@
                             <span class="step-responsible">责任人：专利管理员</span>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 撰写前的准备部分 -->
+        <section id="preparation" class="section">
+            <h3>撰写前的准备</h3>
+            <p>在开始撰写专利交底书之前，充分的准备工作是确保专利质量的关键。以下是详细的准备指南：</p>
+            
+            <div class="preparation-container">
+                <div class="preparation-header">
+                    <h4>专利交底书撰写前的准备工作建议</h4>
+                    <p>核心目标：进行"现有技术"检索，确保您的创意具有新颖性和创造性，并从中获取灵感，优化自己的技术方案。</p>
+                </div>
+                
+                <div class="preparation-content">
+                    <!-- 准备工作清单 -->
+                    <div class="preparation-step">
+                        <h5>📋 准备工作清单</h5>
+                        <div class="preparation-highlight">
+                            <strong>核心目标：</strong> 进行"现有技术"检索，确保您的创意具有新颖性和创造性，并从中获取灵感，优化自己的技术方案。
+                        </div>
+                    </div>
+
+                    <!-- 技术梳理与内部讨论 -->
+                    <div class="preparation-step">
+                        <h5>🔍 技术梳理与内部讨论</h5>
+                        <ul>
+                            <li><strong>明确核心创新点：</strong> 用一句话清晰地概括本发明最核心、最与众不同的是什么？是新的结构、新的方法、新的配方，还是已知组件的新组合带来了意想不到的效果？</li>
+                            <li><strong>界定技术问题：</strong> 本发明旨在解决什么具体的技术问题？现有技术为什么无法很好地解决这个问题？</li>
+                            <li><strong>分析优势效果：</strong> 与现有方案相比，本发明带来了哪些具体的优势（如效率提升、成本降低、可靠性增强等）？</li>
+                            <li><strong>召集发明人会议：</strong> 与参与研发的核心团队成员一起进行头脑风暴，确保对技术方案的理解一致，并穷举所有可能的技术特征和变通方案。</li>
+                        </ul>
+                    </div>
+
+                    <!-- 现有技术检索 -->
+                    <div class="preparation-step">
+                        <h5>🔎 现有技术检索（专利查询与下载）</h5>
+                        <div class="preparation-warning">
+                            <strong>这是准备工作中最关键的一环。</strong>
+                        </div>
+                        
+                        <h6>检索什么（关键词）：</h6>
+                        <ul>
+                            <li><strong>中文检索：</strong> 在中国国家知识产权局（CNIPA）官网、SooPAT、佰腾网等平台，使用您梳理出的技术关键词、同义词、近义词进行检索。</li>
+                            <li><strong>全球检索（可选，但强烈推荐）：</strong> 在WIPO PATENTSCOPE、美国USPTO、欧洲EPO等数据库进行检索，了解全球范围内的现有技术状况。</li>
+                        </ul>
+
+                        <h6>怎么分析（下载后）：</h6>
+                        <ul>
+                            <li><strong>重点阅读：</strong> 下载几篇最相关的专利文献，重点阅读其"背景技术"（了解他们如何描述问题）、"权利要求书"（了解其保护范围）和"附图"。</li>
+                            <li><strong>对比差异：</strong> 将您的发明与检索到的最接近的现有技术进行逐条对比，明确您的创新之处在哪里。这直接关系到后续交底书中"发明内容"和"有益效果"的撰写。</li>
+                        </ul>
+                    </div>
+
+                    <!-- 专利下载常用网址 -->
+                    <div class="preparation-step">
+                        <h5>🌐 附：专利下载常用网址</h5>
+                        <div class="website-list">
+                            <div class="website-item">
+                                <div>
+                                    <div class="website-name">中国及多国专利审查信息查询（中国国家知识产权局CNIPA官方系统）</div>
+                                    <div class="website-description">最权威的中国专利官方数据库。不仅可以查询专利文献，还能看到专利的审查过程、通知书等真实信息，对于理解专利授权条件非常有帮助。建议优先使用此站进行精确查询。</div>
+                                </div>
+                                <a href="http://cpquery.cnipa.gov.cn" class="website-url" target="_blank">http://cpquery.cnipa.gov.cn</a>
+                            </div>
+                            
+                            <div class="website-item">
+                                <div>
+                                    <div class="website-name">专利汇（SooPAT）</div>
+                                    <div class="website-description">虽然不是官方网站，但以其友好的用户界面和强大的统计分析功能著称。检索体验流畅，支持语义检索，非常适合进行初步的、发散性的技术检索。</div>
+                                </div>
+                                <a href="http://www.soopat.com" class="website-url" target="_blank">http://www.soopat.com</a>
+                            </div>
+                            
+                            <div class="website-item">
+                                <div>
+                                    <div class="website-name">佰腾网</div>
+                                    <div class="website-description">老牌的专利检索平台，数据全面，更新及时，同样拥有庞大的用户群体。</div>
+                                </div>
+                                <a href="http://www.baiten.cn" class="website-url" target="_blank">http://www.baiten.cn</a>
+                            </div>
+                            
+                            <div class="website-item">
+                                <div>
+                                    <div class="website-name">WIPO PATENTSCOPE</div>
+                                    <div class="website-description">由世界知识产权组织维护，收录了PCT（专利合作条约）国际申请以及众多国家的专利数据。如果您有海外布局的考虑，这是必查库。支持多种语言检索，界面非常现代化。</div>
+                                </div>
+                                <a href="https://patentscope.wipo.int" class="website-url" target="_blank">https://patentscope.wipo.int</a>
+                            </div>
+                            
+                            <div class="website-item">
+                                <div>
+                                    <div class="website-name">美国专利商标局（USPTO）专利数据库</div>
+                                    <div class="website-description">查询美国专利和专利申请的官方渠道。美国专利文献量巨大，技术领域广泛，是了解全球技术动态的重要窗口。</div>
+                                </div>
+                                <a href="http://patft.uspto.gov" class="website-url" target="_blank">http://patft.uspto.gov</a>
+                            </div>
+                            
+                            <div class="website-item">
+                                <div>
+                                    <div class="website-name">欧洲专利局（EPO）Espacenet</div>
+                                    <div class="website-description">收录了全球超过1.3亿份专利文献，是覆盖面最广的免费数据库之一。其"专利家族"和"引用文献"查询功能非常强大，可以帮助您快速找到相关技术的所有同族专利和重要参考文献。</div>
+                                </div>
+                                <a href="https://worldwide.espacenet.com" class="website-url" target="_blank">https://worldwide.espacenet.com</a>
+                            </div>
+                        </div>
+
+                        <div class="preparation-info">
+                            <strong>建议：</strong>
+                            <ol>
+                                <li><strong>从中文库开始：</strong> 建议先使用 SooPAT 或 佰腾网 进行初步的、广泛的关键词检索，快速了解技术领域的大致情况。</li>
+                                <li><strong>用官方库确认：</strong> 找到感兴趣的相关专利后，可以去 中国国家知识产权局 的官方查询网站核对最准确的信息。</li>
+                                <li><strong>拓展到全球：</strong> 如果技术本身具有国际前沿性，务必使用 WIPO PATENTSCOPE 或 EPO Espacenet 进行检索，看看国外是否有类似的方案，这能极大地帮助判断您发明的"创造性"。</li>
+                            </ol>
+                        </div>
+
+                        <h6>检索小技巧：</h6>
+                        <ul>
+                            <li><strong>多用关键词组合：</strong> 尝试使用不同的关键词、同义词进行组合检索（用 AND, OR 等连接）。</li>
+                            <li><strong>利用分类号：</strong> 高级检索中可以结合国际专利分类号（IPC）或联合专利分类号（CPC）来缩小范围，提高检索精准度。</li>
+                            <li><strong>查看引用关系：</strong> 特别关注一篇专利的"被引用专利"，这往往是后续的改进技术，能帮您理清技术发展脉络。</li>
+                        </ul>
+                    </div>
+
+                    <!-- 材料收集与整理 -->
+                    <div class="preparation-step">
+                        <h5>📁 材料收集与整理</h5>
+                        <ul>
+                            <li><strong>技术文档：</strong> 收集项目前期的设计草图、实验数据、测试报告、仿真结果等，这些是支撑交底书内容真实性的有力证据。</li>
+                            <li><strong>相关专利列表：</strong> 将检索到的最相关的几篇专利文献整理成一个简单的列表，附上标题、申请号和链接。这可以在后续评审和与代理师沟通时，高效地说明本发明的定位。</li>
+                        </ul>
+                    </div>
+
+                    <!-- 总结 -->
+                    <div class="preparation-step">
+                        <h5>📝 总结一下，准备工作的输出物应该是：</h5>
+                        <ol>
+                            <li>一份清晰的技术创新说明。</li>
+                            <li>一组最相关的现有技术专利文献。</li>
+                        </ol>
+                        <div class="preparation-highlight">
+                            <strong>这些准备工作不仅能让你撰写交底书时思路更清晰、下笔更有物，还能在后续的评审和与专利代理师的沟通中节省大量时间，确保大家基于充分的信息进行讨论，共同提升专利质量。</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 模板示例 -->
+            <div class="template-section">
+                <h5>📋 输出物模板示例</h5>
+                <p>以下是两个输出物的模板事例，供大家参考：</p>
+                
+                <!-- 模板一：技术创新说明 -->
+                <div class="template-content">
+                    <h6>模板一：技术创新说明模板</h6>
+                    <p><em>（目的：用最精炼的语言，向专利管理员、代理师及评审专家清晰地阐述本发明的核心价值）</em></p>
+                    
+                    <p><strong>技术方案名称：</strong> 一种基于CRISPR/Cas12b的一步法闭管检测鹦鹉热衣原体的试剂盒及方法</p>
+                    
+                    <h6>1. 现有技术存在的核心问题（痛点）：</h6>
+                    <ul>
+                        <li><strong>问题一（检测流程繁琐）：</strong> 现有的LAMP或RAA等温扩增技术检测鹦鹉热衣原体后，需开盖进行产物检测（如添加染料或使用试纸条），无法实现"闭管检测"，易产生气溶胶污染，导致假阳性结果。</li>
+                        <li><strong>问题二（结果判读特异性不足）：</strong> 常规的荧光染料（如SYBR Green I）无法区分特异性扩增和非特异性扩增，可能存在假阳性风险。</li>
+                        <li><strong>问题三（平台整合度低）：</strong> 将CRISPR检测与等温扩增结合的"两步法"平台，因反应温度不同，操作步骤繁琐，增加了污染风险和操作时间。</li>
+                    </ul>
+                    
+                    <h6>2. 本发明的核心创新点（解决方案）：</h6>
+                    <ul>
+                        <li><strong>创新点一（方法整合）：</strong> 将等温扩增（预扩增） 与 CRISPR/Cas12b（特异性检测与信号放大） 两个步骤整合在同一个反应管、同一温度（65℃）下一次性完成，实现了真正的"一步法闭管检测"。</li>
+                        <li><strong>创新点二（关键组分设计）：</strong> 设计了一套特异性极高的引物组（SEQ ID NO: 1-6） 和一条高特异性的gRNA（SEQ ID NO: 7），二者协同工作，确保只对鹦鹉热衣原体的OmpA基因靶标产生响应。</li>
+                        <li><strong>创新点三（信号输出机制）：</strong> 利用Cas12b在识别靶DNA后被激活的"旁切活性"来切割荧光报告探针，产生荧光信号。这种机制仅由特异性扩增产物触发，从而有效避免了非特异性扩增带来的假阳性。</li>
+                    </ul>
+                    
+                    <h6>3. 带来的技术效果（优势）：</h6>
+                    <ul>
+                        <li><strong>防污染：</strong> 全程闭管操作，彻底避免气溶胶污染。</li>
+                        <li><strong>高特异性：</strong> CRISPR/Cas12b系统提供了双重识别（引物+gRNA），与12种常见呼吸道病原体无交叉反应。</li>
+                        <li><strong>高灵敏度：</strong> 检测限低至单拷贝/μL。</li>
+                        <li><strong>快速简便：</strong> 30分钟内完成检测，仅需恒温设备，易于在基层或现场推广。</li>
+                        <li><strong>结果判读直观：</strong> 通过荧光曲线自动判读，客观准确。</li>
+                    </ul>
+                </div>
+
+                <!-- 模板二：相关现有技术专利文献列表 -->
+                <div class="template-content">
+                    <h6>模板二：相关现有技术专利文献列表模板</h6>
+                    <p><em>（目的：展示已做的专利检索工作，证明本发明的新颖性和创造性）</em></p>
+                    
+                    <table class="patent-table">
+                        <thead>
+                            <tr>
+                                <th>专利号</th>
+                                <th>标题</th>
+                                <th>技术要点</th>
+                                <th>与本发明的区别（为何本发明更具优势）</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>CN113136445A</td>
+                                <td>一种用于宠物人兽共患鹦鹉热衣原体病的等温扩增检测试剂盒</td>
+                                <td>采用LAMP技术，30分钟完成扩增。</td>
+                                <td><strong>检测方法不同：</strong> 该专利使用SYBR Green I染料进行可视检测，必须开盖，有污染风险。本发明为闭管荧光检测。</td>
+                            </tr>
+                            <tr>
+                                <td>CN114540525A</td>
+                                <td>一种检测鹦鹉热衣原体的RAA试剂盒及检测方法</td>
+                                <td>采用RAA技术，15分钟完成扩增。</td>
+                                <td><strong>检测方法不同：</strong> 该专利扩增后需开盖使用侧流层析试纸条判读，无法闭管。本发明实现了扩增与检测一步完成，全程闭管。</td>
+                            </tr>
+                            <tr>
+                                <td>（可补充）</td>
+                                <td>涉及CRISPR与等温扩增联用的相关专利</td>
+                                <td>通常采用"两步法"，即先在一个温度下进行等温扩增，再在另一个温度下进行CRISPR反应。</td>
+                                <td><strong>整合度不同：</strong> "两步法"操作繁琐，增加污染机会。本发明开发了兼容的反应体系，实现在同一温度下的"一步法"，操作更简单、快捷。</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </section>
@@ -506,21 +1008,199 @@
         <!-- 模板速查部分 -->
         <section id="templates" class="section">
             <h3>模板速查</h3>
-            <p>这里提供一些常用的句式模板，方便您快速组织语言。</p>
+            <p>以下模板基于一个鹦鹉热衣原体的等温扩增技术交底书提炼，包含了更具体的论证逻辑和标准表述，供写作时参考。</p>
+
             <div class="example-box">
-                <strong>技术问题模板：</strong>
-                <p id="template-problem">本发明的目的在于克服现有技术的不足，提供一种[技术领域]的[产品/方法]，以解决现有技术中存在的[具体问题1]、[具体问题2]等问题。</p>
-                <button class="copy-btn" onclick="copyToClipboard('template-problem')">复制</button>
+                <strong>背景技术-现有技术缺陷分析模板（四段式经典结构）</strong>
+                <p id="template-background">
+                    <strong>第一段（定义问题与危害）：</strong> 鹦鹉热衣原体（Chlamydia psittaci）属于衣原体目，是一种革兰氏阴性、严格细胞内寄生的微生物。其主要通过患病鸟类、禽类或吸入患病鸟类鼻腔分泌物的气溶胶和粪便或者羽毛的粉尘传播给人类，感染后可能导致高热、恶寒、头痛、肌痛、咳嗽肺部浸润性病变等特征，严重者可并发心肌炎等严重后果。<br><br>
+                    <strong>第二段（传统方法及其缺点）：</strong> 早期，鹦鹉热衣原体的检测主要采用病原体分离鉴定的方法，如细胞接种培养、鸡胚接种培养和动物接种培养。该方法试验时间久，操作过程繁琐，不适宜大规模的样本检测。此外，免疫学检测技术（如免疫荧光技术、ELISA）也常被使用，但存在耗时长、成本高等缺点。<br><br>
+                    <strong>第三段（第一代改进技术及其局限性）：</strong> 随着分子诊断技术的发展，聚合酶链式反应（PCR）及荧光定量PCR因其特异性高、灵敏度高而被广泛应用。例如，冯悦等人建立了Taqman-MGB荧光定量PCR检测方法。然而，该技术成本高，易污染，且对仪器设备要求高。<br><br>
+                    <strong>第四段（最新技术及其仍未解决的痛点）：</strong> 近年来，等温扩增技术（如LAMP、RAA）因操作简单、仪器要求低而成为替代方案。但现有技术如专利CN113136445A采用的LAMP技术存在无法实现闭管检测，易产生气溶胶污染的问题；而专利CN114540525A采用的RAA技术同样需要开盖进行结果判读。此外，等温扩增技术易产生非特异性扩增，而基于CRISPR/Cas系统的检测技术通常需要两步法，操作繁琐且易造成污染。
+                </p>
+                <button class="copy-btn" onclick="copyToClipboard('template-background')">复制</button>
             </div>
+
             <div class="example-box">
-                <strong>技术方案开头模板：</strong>
-                <p id="template-solution">为实现上述目的，本发明采用如下技术方案：一种[产品名称]，其特征在于，包括[部件A]、[部件B]和[部件C]；所述[部件A]与[部件B]相连接，用于实现[功能描述]...</p>
-                <button class="copy-btn" onclick="copyToClipboard('template-solution')">复制</button>
+                <strong>发明目的/技术问题模板</strong>
+                <p id="template-objective">本发明的目的在于克服现有技术的不足，提供一种基于等温扩增法快速检测或辅助检测鹦鹉热衣原体的引物组合及试剂盒，以解决现有检测方法中存在的检测时间长、依赖精密仪器、无法闭管检测易污染、操作繁琐以及可能存在非特异性扩增等问题。</p>
+                <button class="copy-btn" onclick="copyToClipboard('template-objective')">复制</button>
             </div>
+
             <div class="example-box">
-                <strong>有益效果模板：</strong>
-                <p id="template-effect">与现有技术相比，本发明的有益效果是：1）通过采用[创新点1]，实现了[效果1]；2）由于设计了[创新点2]，从而提高了[效果2]...</p>
-                <button class="copy-btn" onclick="copyToClipboard('template-effect')">复制</button>
+                <strong>发明内容-技术方案概述模板（"搭积木"式描述）</strong>
+                <p id="template-solution-overview">为实现上述目的，本发明采用如下技术方案：<br><br>
+                    一种检测鹦鹉热衣原体的引物组合，其特征在于，所述引物组合包括一组特异性等温扩增引物和一条gRNA序列；<br><br>
+                    所述特异性等温扩增引物是针对鹦鹉热衣原体外膜主蛋白（OmpA）区域设计得到，包括如SEQ ID NO: 1-6所示的F3、B3、FIP、BIP、LB、LF引物；<br><br>
+                    所述gRNA序列包含一段可以与Cas12b蛋白结合的序列和靶向识别鹦鹉热衣原体DNA的序列，其序列如SEQ ID NO: 7所示。<br><br>
+                    本发明还提供一种含有上述引物组合的试剂盒，其特征在于，所述试剂盒包括：反应缓冲液、酶mix、引物探针mix；<br><br>
+                    其中，所述反应缓冲液包含dNTP、DMSO、氯化镁、氯化钾、山梨醇和DNA荧光报告探针（如SEQ ID NO: 8）；<br><br>
+                    所述酶mix包含Bst DNA聚合酶和Cas12b核酸酶；<br><br>
+                    所述引物探针mix即为上述的引物组合。
+                </p>
+                <button class="copy-btn" onclick="copyToClipboard('template-solution-overview')">复制</button>
+            </div>
+
+            <div class="example-box">
+                <strong>有益效果模板（与背景技术的缺陷逐条对应）</strong>
+                <p id="template-advantage">与现有技术相比，本发明的有益效果在于：<br><br>
+                    <strong>1. 快速高效：</strong> 整个检测过程可在65℃下30min内完成，与常规PCR和实时荧光定量PCR需要数小时相比，极大地缩短了检测时间。<br><br>
+                    <strong>2. 设备要求低：</strong> 只需在恒定温度下反应，无需专业PCR设备，仅需恒温核酸扩增检测仪，设备小巧、便于转运和使用。<br><br>
+                    <strong>3. 闭管检测，防污染：</strong> 整个实验过程无需开盖，降低了实验室气溶胶污染的风险。<br><br>
+                    <strong>4. 特异性强：</strong> 通过gRNA引导Cas12b特异性识别扩增产物，可以准确检测鹦鹉热衣原体，与肺炎链球菌、肺炎克雷伯氏菌等十余种常见病原体无交叉反应。<br><br>
+                    <strong>5. 灵敏度高：</strong> 最低检测限可达单拷贝/μL。<br><br>
+                    <strong>6. 操作简单，易于判读：</strong> 通过实时检测荧光信号值和观察检测曲线即可判断结果，适用于现场或临床检测。
+                </p>
+                <button class="copy-btn" onclick="copyToClipboard('template-advantage')">复制</button>
+            </div>
+
+            <div class="example-box">
+                <strong>具体实施方式-检测方法步骤模板</strong>
+                <p id="template-method">一种利用所述试剂盒进行检测的方法，其特征在于，包括如下步骤：<br><br>
+                    （1）提取待测样本的DNA核酸；<br><br>
+                    （2）以提取的DNA为模板，配制等温扩增反应体系：反应缓冲液30μL，引物探针mix 10μL，酶mix 5μL，模板DNA 5μL，并以阳性质控品和阴性质控品为对照；<br><br>
+                    （3）进行等温扩增和检测：于65℃条件下，每30s读取一次荧光值，反应30min；<br><br>
+                    （4）结果分析：若荧光检测曲线呈上升趋势，且30min的终点荧光信号值高于10000，则判定为阳性；若荧光检测曲线呈水平状态，且终点荧光信号值低于10000，则判定为阴性。
+                </p>
+                <button class="copy-btn" onclick="copyToClipboard('template-method')">复制</button>
+            </div>
+        </section>
+
+        <!-- 专利申请FAQ部分 -->
+        <section id="faq" class="section">
+            <h3>专利申请FAQ</h3>
+            <p>以下是专利申请过程中的常见问题解答，帮助您更好地理解和参与专利申请流程。</p>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>什么是"专利交底书"？它为什么重要？</h4>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>专利交底书是发明人向专利代理师或公司内部评审人员详细阐述其技术发明的核心文档。它是专利申请的"说明书"和"蓝图"，需要清晰说明技术问题、解决方案、创新点及有益效果。</p>
+                        <div class="faq-highlight">
+                            <strong>重要性：</strong> 一份高质量的交底书是获得高质量专利的基础，能显著提升授权概率并加快流程。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>"发明专利"、"实用新型专利"和"外观设计专利"有什么区别？</h4>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>发明专利：</strong> 保护对产品、方法或其改进所提出的新的技术方案。审查严格，保护期长（通常20年），价值最高。</p>
+                        <p><strong>实用新型专利：</strong> 保护对产品的形状、构造或其结合所提出的适于实用的新的技术方案。俗称"小发明"，审查周期较短，保护期较短（10年）。</p>
+                        <p><strong>外观设计专利：</strong> 保护对产品的整体或局部的形状、图案、色彩及其结合所作出的富有美感并适于工业应用的新设计。简单说，就是保护产品的"颜值"。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>专利的"新颖性"、"创造性"和"实用性"是什么意思？</h4>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>这是授予专利权的三个核心条件，俗称"三性"：</p>
+                        <ul>
+                            <li><strong>新颖性：</strong> 该发明不属于现有技术，在申请日之前没有任何单位或个人就同样的技术公开过。</li>
+                            <li><strong>创造性：</strong> 与现有技术相比，该发明具有突出的实质性特点和显著的进步，不是本领域技术人员轻易就能想到的。</li>
+                            <li><strong>实用性：</strong> 该发明能够制造或者使用，并且可以产生积极效果。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>我在撰写"专利交底书"时，最需要关注什么？</h4>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>请重点关注以下几点：</p>
+                        <ul>
+                            <li><strong>背景技术：</strong> 清楚说明现有技术存在什么问题和缺陷。</li>
+                            <li><strong>发明内容：</strong> 详细描述你是如何解决上述问题的，包括技术手段、工作原理、结构示意图等。这是核心部分。</li>
+                            <li><strong>创新点：</strong> 明确点出你的技术与现有技术相比，新在何处，好在哪里。</li>
+                            <li><strong>具体实施方式：</strong> 提供足够的细节，让本领域的技术人员能够根据你的描述实现该发明。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>Teambition上的"专利交底书评审"任务，我需要做什么？</h4>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p><strong>作为申请人：</strong> 你需要在初稿完成后主动发起任务，并@相关评审成员（包括项目组成员和专利管理员）。</p>
+                        <p><strong>作为评审成员：</strong> 你收到评审任务后，应仔细阅读交底书，重点关注技术方案是否清楚、创新点是否突出、是否存在公开风险等，并在Teambition上提交你的评审意见。</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>专利代理师的作用是什么？我该如何与他们配合？</h4>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>专利代理师是连接技术和法律的桥梁。他们的主要作用是将技术语言转化为符合法律要求的专利文书（权利要求书、说明书等），以争取最宽泛、最稳定的保护范围。</p>
+                        <div class="faq-info">
+                            <strong>配合建议：</strong> 请您将其视为战友，积极配合，详细解释技术细节，并对代理师提出的问题给予及时、准确的反馈。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>在申请专利前，有哪些特别需要注意的？</h4>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <div class="faq-warning">
+                            <strong>最关键的"红线"是提前公开！</strong> 在提交专利申请之前，任何形式的公开都可能导致专利失效，例如：
+                        </div>
+                        <ul>
+                            <li>在学术期刊、会议、网站、博客上公开发表</li>
+                            <li>在公开场合（如展览会、技术论坛）展示或演示</li>
+                            <li>在未签署保密协议的情况下与他人（包括客户）讨论技术细节</li>
+                        </ul>
+                        <p><strong>如有任何公开计划，请务必先申请专利。</strong></p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>如何判断一个想法是否值得申请专利？</h4>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>可以从以下几个角度考虑：</p>
+                        <ul>
+                            <li><strong>技术价值：</strong> 是否解决了行业痛点？是否带来了显著的技术进步？</li>
+                            <li><strong>商业价值：</strong> 是否能为公司产品形成保护？是否能遏制竞争对手？是否有潜在的市场许可或转让价值？</li>
+                            <li><strong>战略价值：</strong> 是否有助于构建公司的专利壁垒？是否是对核心专利的补充布局？</li>
+                        </ul>
+                        <div class="faq-highlight">
+                            <strong>当不确定时，请及时与部门负责人或专利管理员沟通讨论。</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h4>如果我对专利申请流程有疑问，应该找谁？</h4>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <ul>
+                            <li><strong>流程性问题</strong>（如Teambition操作、节点审批）：请首先联系专利管理员。研发中心的专利管理员人员可能会变动，如果有流程上的问题想咨询，可以发送邮件给到<strong>patent@matridx.com</strong>。该邮箱是专利管理员的专用邮箱，会快速响应和答疑。</li>
+                            <li><strong>技术性问题</strong>（如交底书内容、创新点提炼）：请与部门负责人或相关领域专家讨论。</li>
+                            <li><strong>法律性问题</strong>（如保护范围、审查意见答复）：由专利管理员协调专利代理师进行解答。</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -566,6 +1246,23 @@
             }).catch(err => {
                 console.error('复制失败: ', err);
             });
+        }
+
+        // FAQ切换功能
+        function toggleFAQ(element) {
+            const answer = element.nextElementSibling;
+            const icon = element.querySelector('.faq-icon');
+            
+            // 切换当前FAQ的显示状态
+            if (answer.classList.contains('active')) {
+                answer.classList.remove('active');
+                element.classList.remove('active');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                answer.classList.add('active');
+                element.classList.add('active');
+                icon.style.transform = 'rotate(180deg)';
+            }
         }
 
         // 获取所有输入内容
