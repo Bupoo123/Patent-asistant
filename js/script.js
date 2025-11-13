@@ -1,6 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     initNavigation();
+    initThemeToggle();
     DisclosureWizard.init();
+    initExportStatus();
 });
 
 function initNavigation() {
@@ -20,6 +22,61 @@ function initNavigation() {
             }
         });
     });
+}
+
+function initThemeToggle() {
+    const toggle = document.getElementById('theme-toggle');
+    if (!toggle) {
+        return;
+    }
+
+    const label = toggle.querySelector('.theme-toggle__label');
+    const icon = toggle.querySelector('.theme-toggle__icon');
+    const THEME_KEY = 'patentTheme';
+    const prefersDark = (() => {
+        try {
+            return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        } catch (error) {
+            console.warn('系统主题检测失败', error);
+            return false;
+        }
+    })();
+    let currentTheme = localStorage.getItem(THEME_KEY) || (prefersDark ? 'dark' : 'light');
+
+    const applyTheme = theme => {
+        currentTheme = theme === 'dark' ? 'dark' : 'light';
+        document.body.setAttribute('data-theme', currentTheme);
+        if (label) {
+            label.textContent = currentTheme === 'dark' ? '浅色模式' : '暗色模式';
+        }
+        if (icon) {
+            icon.textContent = currentTheme === 'dark' ? '🌞' : '🌙';
+        }
+        localStorage.setItem(THEME_KEY, currentTheme);
+    };
+
+    applyTheme(currentTheme);
+
+    toggle.addEventListener('click', () => {
+        applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+    });
+}
+
+function initExportStatus() {
+    const lastSavedAt = DisclosureWizard.getLastSavedAt?.();
+    if (lastSavedAt) {
+        const timestamp = formatDisplayTimestamp(lastSavedAt);
+        setExportStatus(`已恢复草稿：${timestamp}`);
+    } else {
+        setExportStatus('尚未生成预览。');
+    }
+}
+
+function setExportStatus(message) {
+    const statusEl = document.getElementById('export-status-text');
+    if (statusEl) {
+        statusEl.textContent = message;
+    }
 }
 
 const DisclosureWizard = (() => {
@@ -470,19 +527,19 @@ function previewHTML() {
     const exportTimestamp = new Date().toISOString();
 
     const html = `
-        <div style="font-family: 'Microsoft YaHei', sans-serif; line-height: 1.8;">
-            <h1 style="text-align: center; color: #2c3e50; margin-bottom: 30px;">专利交底书</h1>
-            <h2 style="color: #3498db; border-bottom: 2px solid #3498db; padding-bottom: 5px;">1. 发明名称</h2>
+        <div style="font-family: 'Microsoft YaHei', sans-serif; line-height: 1.8; color: #1f2b3d;">
+            <h1 style="text-align: center; color: #1f2b3d; margin-bottom: 30px;">专利交底书</h1>
+            <h2 style="color: #2563eb; border-bottom: 2px solid #2563eb; padding-bottom: 5px;">1. 发明名称</h2>
             <p style="margin: 15px 0; font-size: 16px;">${inputs.inventionName || '（请填写发明名称）'}</p>
-            <h2 style="color: #3498db; border-bottom: 2px solid #3498db; padding-bottom: 5px;">2. 技术领域</h2>
+            <h2 style="color: #2563eb; border-bottom: 2px solid #2563eb; padding-bottom: 5px;">2. 技术领域</h2>
             <p style="margin: 15px 0;">${inputs.technicalField || '（请填写技术领域）'}</p>
-            <h2 style="color: #3498db; border-bottom: 2px solid #3498db; padding-bottom: 5px;">3. 背景技术</h2>
+            <h2 style="color: #2563eb; border-bottom: 2px solid #2563eb; padding-bottom: 5px;">3. 背景技术</h2>
             <p style="margin: 15px 0;">${inputs.background || '（请填写背景技术）'}</p>
-            <h2 style="color: #3498db; border-bottom: 2px solid #3498db; padding-bottom: 5px;">4. 发明内容</h2>
+            <h2 style="color: #2563eb; border-bottom: 2px solid #2563eb; padding-bottom: 5px;">4. 发明内容</h2>
             <p style="margin: 15px 0;">${inputs.inventionContent || '（请填写发明内容）'}</p>
-            <h2 style="color: #3498db; border-bottom: 2px solid #3498db; padding-bottom: 5px;">5. 权利要求</h2>
+            <h2 style="color: #2563eb; border-bottom: 2px solid #2563eb; padding-bottom: 5px;">5. 权利要求</h2>
             <p style="margin: 15px 0;">${inputs.claims || '（请填写权利要求）'}</p>
-            <h2 style="color: #3498db; border-bottom: 2px solid #3498db; padding-bottom: 5px;">6. 具体实施方式</h2>
+            <h2 style="color: #2563eb; border-bottom: 2px solid #2563eb; padding-bottom: 5px;">6. 具体实施方式</h2>
             <p style="margin: 15px 0;">${inputs.embodiments || '（请填写具体实施方式）'}</p>
             <div style="margin-top: 30px; font-size: 14px; color: #7f8c8d;">
                 <strong>版本信息：</strong> 预览生成时间 ${new Date(exportTimestamp).toLocaleString('zh-CN', { hour12: false })}
@@ -492,8 +549,14 @@ function previewHTML() {
 
     if (previewContent && previewContainer) {
         previewContent.innerHTML = html;
-        previewContainer.style.display = 'block';
-        previewContainer.scrollIntoView({ behavior: 'smooth' });
+        previewContainer.classList.remove('hidden');
+        const timestampText = formatDisplayTimestamp(exportTimestamp);
+        const previewTimestampEl = document.getElementById('preview-timestamp');
+        if (previewTimestampEl) {
+            previewTimestampEl.textContent = `生成于 ${timestampText}`;
+        }
+        setExportStatus(`已生成最新预览（${timestampText}）`);
+        previewContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 }
 
@@ -515,9 +578,9 @@ function downloadDoc() {
         <head>
             <meta charset="UTF-8">
             <style>
-                body { font-family: 'Microsoft YaHei', sans-serif; line-height: 1.8; margin: 40px; }
-                h1 { text-align: center; color: #2c3e50; margin-bottom: 30px; }
-                h2 { color: #3498db; border-bottom: 2px solid #3498db; padding-bottom: 5px; }
+                body { font-family: 'Microsoft YaHei', sans-serif; line-height: 1.8; margin: 40px; color: #1f2b3d; }
+                h1 { text-align: center; color: #1f2b3d; margin-bottom: 30px; }
+                h2 { color: #2563eb; border-bottom: 2px solid #2563eb; padding-bottom: 5px; }
                 p { margin: 15px 0; }
                 .meta { margin-top: 30px; font-size: 14px; color: #7f8c8d; }
             </style>
@@ -553,5 +616,25 @@ function downloadDoc() {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
 
+    const timestampText = formatDisplayTimestamp(exportTimestamp);
+    setExportStatus(`文档已导出（${timestampText}）`);
     alert('文档导出成功，并已记录导出时间。');
+}
+
+function formatDisplayTimestamp(input) {
+    try {
+        const date = input instanceof Date ? input : new Date(input);
+        return new Intl.DateTimeFormat('zh-CN', {
+            hour12: false,
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        }).format(date);
+    } catch (error) {
+        console.warn('时间格式化失败', error);
+        return String(input);
+    }
 }
