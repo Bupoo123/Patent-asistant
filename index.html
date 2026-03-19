@@ -8,8 +8,19 @@
 </head>
 <body>
 
+    <!-- 移动端遮罩 -->
+    <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+    <!-- 移动端汉堡菜单按钮 -->
+    <button class="menu-toggle" id="menu-toggle" aria-label="打开菜单" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+
+    <!-- Toast 通知容器 -->
+    <div id="toast-container" role="status" aria-live="polite"></div>
+
     <!-- 左侧导航 -->
-    <nav id="sidebar">
+    <nav id="sidebar" role="navigation" aria-label="主导航">
         <div class="logo-header">
             <img src="assets/images/logo.png" alt="公司Logo">
         </div>
@@ -23,6 +34,10 @@
             <li><a href="#faq" class="nav-link">专利申请FAQ</a></li>
             <li><a href="#export" class="nav-link">输出文档</a></li>
         </ul>
+        <div class="sidebar-footer">
+            <button class="ai-settings-sidebar-btn" id="ai-settings-btn" title="配置 AI 写作助手">🤖 AI 助手设置</button>
+            <button class="clear-draft-btn" id="clear-draft-btn" title="清除所有已保存的草稿">🗑 清除草稿</button>
+        </div>
     </nav>
 
     <!-- 右侧内容 -->
@@ -34,19 +49,46 @@
             <div class="tip-box">
                 <strong>核心目标：</strong> 清晰、完整地披露您的技术创新，使本领域的技术人员能够根据您的描述实现该技术。
             </div>
+
+            <div class="intro-cards">
+                <div class="intro-card">
+                    <div class="intro-card-icon">📋</div>
+                    <h4>申请流程</h4>
+                    <p>了解公司标准化的7步专利申请流程，从创建项目到最终提交。</p>
+                    <button class="intro-card-btn" data-target="process">查看流程 →</button>
+                </div>
+                <div class="intro-card">
+                    <div class="intro-card-icon">🔍</div>
+                    <h4>撰写前准备</h4>
+                    <p>学习如何进行现有技术检索，确保您的发明具有新颖性和创造性。</p>
+                    <button class="intro-card-btn" data-target="preparation">开始准备 →</button>
+                </div>
+                <div class="intro-card">
+                    <div class="intro-card-icon">✍️</div>
+                    <h4>交底书向导</h4>
+                    <p>通过分步向导完成交底书撰写，实时验证，自动保存草稿。</p>
+                    <button class="intro-card-btn" data-target="disclosure">开始撰写 →</button>
+                </div>
+                <div class="intro-card">
+                    <div class="intro-card-icon">📚</div>
+                    <h4>模板速查</h4>
+                    <p>参考标准模板和示例，快速获取各章节的规范写法。</p>
+                    <button class="intro-card-btn" data-target="templates">查看模板 →</button>
+                </div>
+            </div>
         </section>
 
         <!-- 申请流程部分 -->
         <section id="process" class="section">
             <h3>专利申请流程</h3>
             <p>以下是公司标准化的专利申请流程，请按照步骤有序进行：</p>
-            
+
             <div class="process-container">
                 <div class="process-header">
                     <h4>专利申请流程图</h4>
                     <p>标准化、可视化的专利管理流程</p>
                 </div>
-                
+
                 <div class="process-steps">
                     <div class="process-step">
                         <div class="step-number">1</div>
@@ -132,13 +174,13 @@
         <section id="preparation" class="section">
             <h3>撰写前的准备</h3>
             <p>在开始撰写专利交底书之前，充分的准备工作是确保专利质量的关键。以下是详细的准备指南：</p>
-            
+
             <div class="preparation-container">
                 <div class="preparation-header">
                     <h4>专利交底书撰写前的准备工作建议</h4>
                     <p>核心目标：进行"现有技术"检索，确保您的创意具有新颖性和创造性，并从中获取灵感，优化自己的技术方案。</p>
                 </div>
-                
+
                 <div class="preparation-content">
                     <!-- 准备工作清单 -->
                     <div class="preparation-step">
@@ -165,7 +207,7 @@
                         <div class="preparation-warning">
                             <strong>这是准备工作中最关键的一环。</strong>
                         </div>
-                        
+
                         <h6>检索什么（关键词）：</h6>
                         <ul>
                             <li><strong>中文检索：</strong> 在中国国家知识产权局（CNIPA）官网、SooPAT、佰腾网等平台，使用您梳理出的技术关键词、同义词、近义词进行检索。</li>
@@ -188,47 +230,47 @@
                                     <div class="website-name">中国及多国专利审查信息查询（中国国家知识产权局CNIPA官方系统）</div>
                                     <div class="website-description">最权威的中国专利官方数据库。不仅可以查询专利文献，还能看到专利的审查过程、通知书等真实信息，对于理解专利授权条件非常有帮助。建议优先使用此站进行精确查询。</div>
                                 </div>
-                                <a href="http://cpquery.cnipa.gov.cn" class="website-url" target="_blank">http://cpquery.cnipa.gov.cn</a>
+                                <a href="http://cpquery.cnipa.gov.cn" class="website-url" target="_blank" rel="noopener noreferrer">http://cpquery.cnipa.gov.cn</a>
                             </div>
-                            
+
                             <div class="website-item">
                                 <div>
                                     <div class="website-name">专利汇（SooPAT）</div>
                                     <div class="website-description">虽然不是官方网站，但以其友好的用户界面和强大的统计分析功能著称。检索体验流畅，支持语义检索，非常适合进行初步的、发散性的技术检索。</div>
                                 </div>
-                                <a href="http://www.soopat.com" class="website-url" target="_blank">http://www.soopat.com</a>
+                                <a href="http://www.soopat.com" class="website-url" target="_blank" rel="noopener noreferrer">http://www.soopat.com</a>
                             </div>
-                            
+
                             <div class="website-item">
                                 <div>
                                     <div class="website-name">佰腾网</div>
                                     <div class="website-description">老牌的专利检索平台，数据全面，更新及时，同样拥有庞大的用户群体。</div>
                                 </div>
-                                <a href="http://www.baiten.cn" class="website-url" target="_blank">http://www.baiten.cn</a>
+                                <a href="http://www.baiten.cn" class="website-url" target="_blank" rel="noopener noreferrer">http://www.baiten.cn</a>
                             </div>
-                            
+
                             <div class="website-item">
                                 <div>
                                     <div class="website-name">WIPO PATENTSCOPE</div>
                                     <div class="website-description">由世界知识产权组织维护，收录了PCT（专利合作条约）国际申请以及众多国家的专利数据。如果您有海外布局的考虑，这是必查库。支持多种语言检索，界面非常现代化。</div>
                                 </div>
-                                <a href="https://patentscope.wipo.int" class="website-url" target="_blank">https://patentscope.wipo.int</a>
+                                <a href="https://patentscope.wipo.int" class="website-url" target="_blank" rel="noopener noreferrer">https://patentscope.wipo.int</a>
                             </div>
-                            
+
                             <div class="website-item">
                                 <div>
                                     <div class="website-name">美国专利商标局（USPTO）专利数据库</div>
                                     <div class="website-description">查询美国专利和专利申请的官方渠道。美国专利文献量巨大，技术领域广泛，是了解全球技术动态的重要窗口。</div>
                                 </div>
-                                <a href="http://patft.uspto.gov" class="website-url" target="_blank">http://patft.uspto.gov</a>
+                                <a href="http://patft.uspto.gov" class="website-url" target="_blank" rel="noopener noreferrer">http://patft.uspto.gov</a>
                             </div>
-                            
+
                             <div class="website-item">
                                 <div>
                                     <div class="website-name">欧洲专利局（EPO）Espacenet</div>
                                     <div class="website-description">收录了全球超过1.3亿份专利文献，是覆盖面最广的免费数据库之一。其"专利家族"和"引用文献"查询功能非常强大，可以帮助您快速找到相关技术的所有同族专利和重要参考文献。</div>
                                 </div>
-                                <a href="https://worldwide.espacenet.com" class="website-url" target="_blank">https://worldwide.espacenet.com</a>
+                                <a href="https://worldwide.espacenet.com" class="website-url" target="_blank" rel="noopener noreferrer">https://worldwide.espacenet.com</a>
                             </div>
                         </div>
 
@@ -276,28 +318,28 @@
             <div class="template-section">
                 <h5>📋 输出物模板示例</h5>
                 <p>以下是两个输出物的模板事例，供大家参考：</p>
-                
+
                 <!-- 模板一：技术创新说明 -->
                 <div class="template-content">
                     <h6>模板一：技术创新说明模板</h6>
                     <p><em>（目的：用最精炼的语言，向专利管理员、代理师及评审专家清晰地阐述本发明的核心价值）</em></p>
-                    
+
                     <p><strong>技术方案名称：</strong> 一种基于CRISPR/Cas12b的一步法闭管检测鹦鹉热衣原体的试剂盒及方法</p>
-                    
+
                     <h6>1. 现有技术存在的核心问题（痛点）：</h6>
                     <ul>
                         <li><strong>问题一（检测流程繁琐）：</strong> 现有的LAMP或RAA等温扩增技术检测鹦鹉热衣原体后，需开盖进行产物检测（如添加染料或使用试纸条），无法实现"闭管检测"，易产生气溶胶污染，导致假阳性结果。</li>
                         <li><strong>问题二（结果判读特异性不足）：</strong> 常规的荧光染料（如SYBR Green I）无法区分特异性扩增和非特异性扩增，可能存在假阳性风险。</li>
                         <li><strong>问题三（平台整合度低）：</strong> 将CRISPR检测与等温扩增结合的"两步法"平台，因反应温度不同，操作步骤繁琐，增加了污染风险和操作时间。</li>
                     </ul>
-                    
+
                     <h6>2. 本发明的核心创新点（解决方案）：</h6>
                     <ul>
                         <li><strong>创新点一（方法整合）：</strong> 将等温扩增（预扩增） 与 CRISPR/Cas12b（特异性检测与信号放大） 两个步骤整合在同一个反应管、同一温度（65℃）下一次性完成，实现了真正的"一步法闭管检测"。</li>
                         <li><strong>创新点二（关键组分设计）：</strong> 设计了一套特异性极高的引物组（SEQ ID NO: 1-6） 和一条高特异性的gRNA（SEQ ID NO: 7），二者协同工作，确保只对鹦鹉热衣原体的OmpA基因靶标产生响应。</li>
                         <li><strong>创新点三（信号输出机制）：</strong> 利用Cas12b在识别靶DNA后被激活的"旁切活性"来切割荧光报告探针，产生荧光信号。这种机制仅由特异性扩增产物触发，从而有效避免了非特异性扩增带来的假阳性。</li>
                     </ul>
-                    
+
                     <h6>3. 带来的技术效果（优势）：</h6>
                     <ul>
                         <li><strong>防污染：</strong> 全程闭管操作，彻底避免气溶胶污染。</li>
@@ -312,7 +354,7 @@
                 <div class="template-content">
                     <h6>模板二：相关现有技术专利文献列表模板</h6>
                     <p><em>（目的：展示已做的专利检索工作，证明本发明的新颖性和创造性）</em></p>
-                    
+
                     <table class="patent-table">
                         <thead>
                             <tr>
@@ -350,7 +392,7 @@
         <!-- 专利交底书撰写部分 -->
         <section id="disclosure" class="section">
             <h3>《专利交底书》撰写</h3>
-            <p>请按照向导逐步完善内容，系统会自动保存草稿并在每一步给出校验提示。</p>
+            <p>请按照向导逐步完善内容，系统会自动保存草稿并在每一步给出校验提示。使用 <kbd>←</kbd> <kbd>→</kbd> 方向键可快速切换步骤。</p>
 
             <div class="disclosure-wizard" data-disclosure>
                 <div class="wizard-progress">
@@ -359,40 +401,41 @@
                     </div>
                     <div class="progress-meta">
                         <span id="wizard-status">步骤 1 / 6</span>
+                        <span id="wizard-percent">0%</span>
                         <span id="autosave-status">尚未保存</span>
                     </div>
                 </div>
 
                 <div class="wizard-body">
-                    <div class="wizard-steps" id="wizard-steps">
-                        <button type="button" class="wizard-step active" data-step="0">
+                    <div class="wizard-steps" id="wizard-steps" role="tablist" aria-label="撰写步骤">
+                        <button type="button" class="wizard-step active" data-step="0" role="tab" aria-selected="true" aria-controls="panel-0">
                             <span class="step-title-text">1. 发明名称</span>
                             <span class="step-indicator" aria-hidden="true"></span>
                         </button>
-                        <button type="button" class="wizard-step" data-step="1">
+                        <button type="button" class="wizard-step" data-step="1" role="tab" aria-selected="false" aria-controls="panel-1">
                             <span class="step-title-text">2. 技术领域</span>
                             <span class="step-indicator" aria-hidden="true"></span>
                         </button>
-                        <button type="button" class="wizard-step" data-step="2">
+                        <button type="button" class="wizard-step" data-step="2" role="tab" aria-selected="false" aria-controls="panel-2">
                             <span class="step-title-text">3. 背景技术</span>
                             <span class="step-indicator" aria-hidden="true"></span>
                         </button>
-                        <button type="button" class="wizard-step" data-step="3">
+                        <button type="button" class="wizard-step" data-step="3" role="tab" aria-selected="false" aria-controls="panel-3">
                             <span class="step-title-text">4. 发明内容</span>
                             <span class="step-indicator" aria-hidden="true"></span>
                         </button>
-                        <button type="button" class="wizard-step" data-step="4">
+                        <button type="button" class="wizard-step" data-step="4" role="tab" aria-selected="false" aria-controls="panel-4">
                             <span class="step-title-text">5. 权利要求</span>
                             <span class="step-indicator" aria-hidden="true"></span>
                         </button>
-                        <button type="button" class="wizard-step" data-step="5">
+                        <button type="button" class="wizard-step" data-step="5" role="tab" aria-selected="false" aria-controls="panel-5">
                             <span class="step-title-text">6. 具体实施方式</span>
                             <span class="step-indicator" aria-hidden="true"></span>
                         </button>
                     </div>
 
                     <div class="wizard-panels" id="wizard-panels">
-                        <div class="wizard-panel active" data-step="0">
+                        <div class="wizard-panel active" data-step="0" id="panel-0" role="tabpanel">
                             <div class="input-section">
                                 <h4>1. 发明名称</h4>
                                 <p><strong>作用：</strong> 简单明了地反映发明的核心内容和技术领域。</p>
@@ -404,34 +447,40 @@
                                         <li>一般不超过25个字。</li>
                                     </ul>
                                 </div>
-                                <textarea id="invention-name" class="input-field short" data-disclosure-field="inventionName" placeholder="请输入您的发明名称，例如：一种基于等温扩增法检测鹦鹉热衣原体的引物组合及试剂盒"></textarea>
-                                <div class="validation-message" data-validation-for="invention-name"></div>
+                                <div class="textarea-wrapper">
+                                    <textarea id="invention-name" class="input-field short" data-disclosure-field="inventionName" placeholder="请输入您的发明名称，例如：一种基于等温扩增法检测鹦鹉热衣原体的引物组合及试剂盒" aria-label="发明名称" aria-describedby="invention-name-count invention-name-validation"></textarea>
+                                    <div class="char-count" id="invention-name-count">0 字</div>
+                                </div>
+                                <div class="validation-message" id="invention-name-validation" data-validation-for="invention-name"></div>
                                 <div class="example-box">
                                     <strong>参考示例：</strong>
                                     <p id="name-example">一种基于等温扩增法检测鹦鹉热衣原体的引物组合及试剂盒</p>
-                                    <button class="copy-btn" onclick="copyToClipboard('name-example')">复制</button>
+                                    <button class="copy-btn" data-copy-target="name-example" aria-label="复制示例文本">复制</button>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="wizard-panel" data-step="1">
+                        <div class="wizard-panel" data-step="1" id="panel-1" role="tabpanel">
                             <div class="input-section">
                                 <h4>2. 技术领域</h4>
                                 <p><strong>作用：</strong> 说明本发明所属的具体技术领域。</p>
                                 <div class="tip-box">
                                     <strong>写作技巧：</strong> 直接点明，不要过于宽泛。通常1-2句话即可。
                                 </div>
-                                <textarea id="technical-field" class="input-field" data-disclosure-field="technicalField" placeholder="请输入技术领域描述，例如：本发明属于生物检测技术领域，涉及一种基于等温扩增法检测鹦鹉热衣原体的引物组合及试剂盒。"></textarea>
-                                <div class="validation-message" data-validation-for="technical-field"></div>
+                                <div class="textarea-wrapper">
+                                    <textarea id="technical-field" class="input-field" data-disclosure-field="technicalField" placeholder="请输入技术领域描述，例如：本发明属于生物检测技术领域，涉及一种基于等温扩增法检测鹦鹉热衣原体的引物组合及试剂盒。" aria-label="技术领域" aria-describedby="technical-field-count technical-field-validation"></textarea>
+                                    <div class="char-count" id="technical-field-count">0 字</div>
+                                </div>
+                                <div class="validation-message" id="technical-field-validation" data-validation-for="technical-field"></div>
                                 <div class="example-box">
                                     <strong>参考示例：</strong>
                                     <p id="field-example">本发明属于生物检测技术领域，涉及一种基于等温扩增法检测鹦鹉热衣原体的引物组合及试剂盒。</p>
-                                    <button class="copy-btn" onclick="copyToClipboard('field-example')">复制</button>
+                                    <button class="copy-btn" data-copy-target="field-example" aria-label="复制示例文本">复制</button>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="wizard-panel" data-step="2">
+                        <div class="wizard-panel" data-step="2" id="panel-2" role="tabpanel">
                             <div class="input-section">
                                 <h4>3. 背景技术</h4>
                                 <p><strong>作用：</strong> 描述现有技术的不足，引出本发明的动机。</p>
@@ -443,17 +492,20 @@
                                         <li>可以引用一些专利或文献号。</li>
                                     </ul>
                                 </div>
-                                <textarea id="background" class="input-field" data-disclosure-field="background" placeholder="请描述现有技术的不足和局限性，引出本发明的必要性。"></textarea>
-                                <div class="validation-message" data-validation-for="background"></div>
+                                <div class="textarea-wrapper">
+                                    <textarea id="background" class="input-field" data-disclosure-field="background" placeholder="请描述现有技术的不足和局限性，引出本发明的必要性。" aria-label="背景技术" aria-describedby="background-count background-validation"></textarea>
+                                    <div class="char-count" id="background-count">0 字</div>
+                                </div>
+                                <div class="validation-message" id="background-validation" data-validation-for="background"></div>
                                 <div class="example-box">
                                     <strong>参考示例：</strong>
                                     <p id="background-example">鹦鹉热衣原体主要通过患病鸟类、禽类传播给人类，感染后表现为高热、恶寒、头痛、肌痛、咳嗽等特征。早期检测主要采用病原体分离鉴定，但试验时间久、操作繁琐。分子诊断技术如PCR虽然特异性高，但成本高、易污染。等温扩增技术如LAMP、RAA虽然操作简单，但需要开盖检测，易产生气溶胶污染，且无法区分非特异性扩增。</p>
-                                    <button class="copy-btn" onclick="copyToClipboard('background-example')">复制</button>
+                                    <button class="copy-btn" data-copy-target="background-example" aria-label="复制示例文本">复制</button>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="wizard-panel" data-step="3">
+                        <div class="wizard-panel" data-step="3" id="panel-3" role="tabpanel">
                             <div class="input-section">
                                 <h4>4. 发明内容（核心）</h4>
                                 <p><strong>作用：</strong> 清晰、完整地说明本发明要解决的技术问题，以及如何解决的。</p>
@@ -465,17 +517,20 @@
                                         <li><strong>有益效果：</strong> 说明本发明带来好处，最好能具体、量化。</li>
                                     </ol>
                                 </div>
-                                <textarea id="invention-content" class="input-field" data-disclosure-field="inventionContent" placeholder="请详细描述您的技术方案，包括要解决的技术问题、具体的技术方案和有益效果。"></textarea>
-                                <div class="validation-message" data-validation-for="invention-content"></div>
+                                <div class="textarea-wrapper">
+                                    <textarea id="invention-content" class="input-field" data-disclosure-field="inventionContent" placeholder="请详细描述您的技术方案，包括要解决的技术问题、具体的技术方案和有益效果。" aria-label="发明内容" aria-describedby="invention-content-count invention-content-validation"></textarea>
+                                    <div class="char-count" id="invention-content-count">0 字</div>
+                                </div>
+                                <div class="validation-message" id="invention-content-validation" data-validation-for="invention-content"></div>
                                 <div class="example-box">
                                     <strong>技术方案示例：</strong>
                                     <p id="solution-example">为解决上述问题，本发明提供了一种基于等温扩增法检测鹦鹉热衣原体的引物组合及试剂盒。其核心创新在于结合CRISPR/Cas系统与等温扩增技术，通过人工设计的gRNA引导Cas12b蛋白特异性识别等温扩增产物，实现一步法闭管检测。该方法主要包括：特异性等温扩增引物组（F3、B3、FIP、BIP、LF、LB）和gRNA序列，反应缓冲液包含DNA荧光报告探针，酶mix包含Bst DNA聚合酶和Cas12b核酸酶。整个检测过程在65℃下30分钟内完成，具有快速、高效、特异性强的特点。</p>
-                                    <button class="copy-btn" onclick="copyToClipboard('solution-example')">复制</button>
+                                    <button class="copy-btn" data-copy-target="solution-example" aria-label="复制示例文本">复制</button>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="wizard-panel" data-step="4">
+                        <div class="wizard-panel" data-step="4" id="panel-4" role="tabpanel">
                             <div class="input-section">
                                 <h4>5. 权利要求</h4>
                                 <p><strong>作用：</strong> 明确专利保护的范围，是专利权的核心部分。</p>
@@ -488,29 +543,35 @@
                                         <li>避免功能性描述，要具体、明确。</li>
                                     </ul>
                                 </div>
-                                <textarea id="claims" class="input-field" data-disclosure-field="claims" placeholder="请描述您的权利要求，包括独立权利要求和从属权利要求。"></textarea>
-                                <div class="validation-message" data-validation-for="claims"></div>
+                                <div class="textarea-wrapper">
+                                    <textarea id="claims" class="input-field" data-disclosure-field="claims" placeholder="请描述您的权利要求，包括独立权利要求和从属权利要求。" aria-label="权利要求" aria-describedby="claims-count claims-validation"></textarea>
+                                    <div class="char-count" id="claims-count">0 字</div>
+                                </div>
+                                <div class="validation-message" id="claims-validation" data-validation-for="claims"></div>
                                 <div class="example-box">
                                     <strong>参考示例：</strong>
                                     <p id="claims-example">1. 一种基于等温扩增法检测鹦鹉热衣原体的引物组合，其特征在于，所述引物组合包括一组特异性等温扩增引物和一条gRNA序列；所述特异性等温扩增引物包括引物F3、引物B3、引物FIP、引物BIP、引物LB和引物LF；所述gRNA序列为5'-AAUGUAGAUGGUUAGCACAAGCCCAGCACAAUUUGUGA-3'。</p>
-                                    <button class="copy-btn" onclick="copyToClipboard('claims-example')">复制</button>
+                                    <button class="copy-btn" data-copy-target="claims-example" aria-label="复制示例文本">复制</button>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="wizard-panel" data-step="5">
+                        <div class="wizard-panel" data-step="5" id="panel-5" role="tabpanel">
                             <div class="input-section">
                                 <h4>6. 具体实施方式</h4>
                                 <p><strong>作用：</strong> 对技术方案的进一步细化，使本领域技术人员能够实现。</p>
                                 <div class="tip-box">
                                     <strong>写作技巧：</strong> 结合附图，详细说明每个部件的作用、每个步骤的具体操作、以及可能用到的具体参数、材料、算法等。<strong>这部分要尽可能详细，像一份实验报告。</strong>
                                 </div>
-                                <textarea id="embodiments" class="input-field" data-disclosure-field="embodiments" placeholder="请详细描述具体实施方式，包括系统组成、操作步骤、参数设置等。"></textarea>
-                                <div class="validation-message" data-validation-for="embodiments"></div>
+                                <div class="textarea-wrapper">
+                                    <textarea id="embodiments" class="input-field" data-disclosure-field="embodiments" placeholder="请详细描述具体实施方式，包括系统组成、操作步骤、参数设置等。" aria-label="具体实施方式" aria-describedby="embodiments-count embodiments-validation"></textarea>
+                                    <div class="char-count" id="embodiments-count">0 字</div>
+                                </div>
+                                <div class="validation-message" id="embodiments-validation" data-validation-for="embodiments"></div>
                                 <div class="example-box">
                                     <strong>参考示例：</strong>
                                     <p id="embodiment-example">以下结合附图对本发明做进一步说明。如图1所示，该检测系统包括样本处理模块、等温扩增模块、CRISPR检测模块和结果分析模块。其中，等温扩增模块采用LAMP技术，反应温度为65℃，反应时间为30分钟；CRISPR检测模块使用Cas12b蛋白，浓度为0.5μg/反应；结果分析模块通过荧光信检测，终点荧光信号值高于10000判定为阳性...</p>
-                                    <button class="copy-btn" onclick="copyToClipboard('embodiment-example')">复制</button>
+                                    <button class="copy-btn" data-copy-target="embodiment-example" aria-label="复制示例文本">复制</button>
                                 </div>
                             </div>
                         </div>
@@ -518,8 +579,8 @@
                 </div>
 
                 <div class="wizard-footer">
-                    <button type="button" class="wizard-nav-btn secondary" id="wizard-prev" disabled>上一步</button>
-                    <button type="button" class="wizard-nav-btn" id="wizard-next">保存并进入下一步</button>
+                    <button type="button" class="wizard-nav-btn secondary" id="wizard-prev" disabled aria-label="上一步">上一步</button>
+                    <button type="button" class="wizard-nav-btn" id="wizard-next" aria-label="保存并进入下一步">保存并进入下一步</button>
                 </div>
             </div>
         </section>
@@ -537,13 +598,13 @@
                     <strong>第三段（第一代改进技术及其局限性）：</strong> 随着分子诊断技术的发展，聚合酶链式反应（PCR）及荧光定量PCR因其特异性高、灵敏度高而被广泛应用。例如，冯悦等人建立了Taqman-MGB荧光定量PCR检测方法。然而，该技术成本高，易污染，且对仪器设备要求高。<br><br>
                     <strong>第四段（最新技术及其仍未解决的痛点）：</strong> 近年来，等温扩增技术（如LAMP、RAA）因操作简单、仪器要求低而成为替代方案。但现有技术如专利CN113136445A采用的LAMP技术存在无法实现闭管检测，易产生气溶胶污染的问题；而专利CN114540525A采用的RAA技术同样需要开盖进行结果判读。此外，等温扩增技术易产生非特异性扩增，而基于CRISPR/Cas系统的检测技术通常需要两步法，操作繁琐且易造成污染。
                 </p>
-                <button class="copy-btn" onclick="copyToClipboard('template-background')">复制</button>
+                <button class="copy-btn" data-copy-target="template-background" aria-label="复制模板">复制</button>
             </div>
 
             <div class="example-box">
                 <strong>发明目的/技术问题模板</strong>
                 <p id="template-objective">本发明的目的在于克服现有技术的不足，提供一种基于等温扩增法快速检测或辅助检测鹦鹉热衣原体的引物组合及试剂盒，以解决现有检测方法中存在的检测时间长、依赖精密仪器、无法闭管检测易污染、操作繁琐以及可能存在非特异性扩增等问题。</p>
-                <button class="copy-btn" onclick="copyToClipboard('template-objective')">复制</button>
+                <button class="copy-btn" data-copy-target="template-objective" aria-label="复制模板">复制</button>
             </div>
 
             <div class="example-box">
@@ -557,7 +618,7 @@
                     所述酶mix包含Bst DNA聚合酶和Cas12b核酸酶；<br><br>
                     所述引物探针mix即为上述的引物组合。
                 </p>
-                <button class="copy-btn" onclick="copyToClipboard('template-solution-overview')">复制</button>
+                <button class="copy-btn" data-copy-target="template-solution-overview" aria-label="复制模板">复制</button>
             </div>
 
             <div class="example-box">
@@ -570,7 +631,7 @@
                     <strong>5. 灵敏度高：</strong> 最低检测限可达单拷贝/μL。<br><br>
                     <strong>6. 操作简单，易于判读：</strong> 通过实时检测荧光信号值和观察检测曲线即可判断结果，适用于现场或临床检测。
                 </p>
-                <button class="copy-btn" onclick="copyToClipboard('template-advantage')">复制</button>
+                <button class="copy-btn" data-copy-target="template-advantage" aria-label="复制模板">复制</button>
             </div>
 
             <div class="example-box">
@@ -581,7 +642,7 @@
                     （3）进行等温扩增和检测：于65℃条件下，每30s读取一次荧光值，反应30min；<br><br>
                     （4）结果分析：若荧光检测曲线呈上升趋势，且30min的终点荧光信号值高于10000，则判定为阳性；若荧光检测曲线呈水平状态，且终点荧光信号值低于10000，则判定为阴性。
                 </p>
-                <button class="copy-btn" onclick="copyToClipboard('template-method')">复制</button>
+                <button class="copy-btn" data-copy-target="template-method" aria-label="复制模板">复制</button>
             </div>
         </section>
 
@@ -589,14 +650,14 @@
         <section id="faq" class="section">
             <h3>专利申请FAQ</h3>
             <p>以下是专利申请过程中的常见问题解答，帮助您更好地理解和参与专利申请流程。</p>
-            
+
             <div class="faq-container">
                 <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
+                    <button class="faq-question" aria-expanded="false">
                         <h4>什么是"专利交底书"？它为什么重要？</h4>
-                        <span class="faq-icon">▼</span>
-                    </div>
-                    <div class="faq-answer">
+                        <span class="faq-icon" aria-hidden="true">▼</span>
+                    </button>
+                    <div class="faq-answer" role="region">
                         <p>专利交底书是发明人向专利代理师或公司内部评审人员详细阐述其技术发明的核心文档。它是专利申请的"说明书"和"蓝图"，需要清晰说明技术问题、解决方案、创新点及有益效果。</p>
                         <div class="faq-highlight">
                             <strong>重要性：</strong> 一份高质量的交底书是获得高质量专利的基础，能显著提升授权概率并加快流程。
@@ -605,11 +666,11 @@
                 </div>
 
                 <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
+                    <button class="faq-question" aria-expanded="false">
                         <h4>"发明专利"、"实用新型专利"和"外观设计专利"有什么区别？</h4>
-                        <span class="faq-icon">▼</span>
-                    </div>
-                    <div class="faq-answer">
+                        <span class="faq-icon" aria-hidden="true">▼</span>
+                    </button>
+                    <div class="faq-answer" role="region">
                         <p><strong>发明专利：</strong> 保护对产品、方法或其改进所提出的新的技术方案。审查严格，保护期长（通常20年），价值最高。</p>
                         <p><strong>实用新型专利：</strong> 保护对产品的形状、构造或其结合所提出的适于实用的新的技术方案。俗称"小发明"，审查周期较短，保护期较短（10年）。</p>
                         <p><strong>外观设计专利：</strong> 保护对产品的整体或局部的形状、图案、色彩及其结合所作出的富有美感并适于工业应用的新设计。简单说，就是保护产品的"颜值"。</p>
@@ -617,11 +678,11 @@
                 </div>
 
                 <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
+                    <button class="faq-question" aria-expanded="false">
                         <h4>专利的"新颖性"、"创造性"和"实用性"是什么意思？</h4>
-                        <span class="faq-icon">▼</span>
-                    </div>
-                    <div class="faq-answer">
+                        <span class="faq-icon" aria-hidden="true">▼</span>
+                    </button>
+                    <div class="faq-answer" role="region">
                         <p>这是授予专利权的三个核心条件，俗称"三性"：</p>
                         <ul>
                             <li><strong>新颖性：</strong> 该发明不属于现有技术，在申请日之前没有任何单位或个人就同样的技术公开过。</li>
@@ -632,11 +693,11 @@
                 </div>
 
                 <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
+                    <button class="faq-question" aria-expanded="false">
                         <h4>我在撰写"专利交底书"时，最需要关注什么？</h4>
-                        <span class="faq-icon">▼</span>
-                    </div>
-                    <div class="faq-answer">
+                        <span class="faq-icon" aria-hidden="true">▼</span>
+                    </button>
+                    <div class="faq-answer" role="region">
                         <p>请重点关注以下几点：</p>
                         <ul>
                             <li><strong>背景技术：</strong> 清楚说明现有技术存在什么问题和缺陷。</li>
@@ -648,22 +709,22 @@
                 </div>
 
                 <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
+                    <button class="faq-question" aria-expanded="false">
                         <h4>Teambition上的"专利交底书评审"任务，我需要做什么？</h4>
-                        <span class="faq-icon">▼</span>
-                    </div>
-                    <div class="faq-answer">
+                        <span class="faq-icon" aria-hidden="true">▼</span>
+                    </button>
+                    <div class="faq-answer" role="region">
                         <p><strong>作为申请人：</strong> 你需要在初稿完成后主动发起任务，并@相关评审成员（包括项目组成员和专利管理员）。</p>
                         <p><strong>作为评审成员：</strong> 你收到评审任务后，应仔细阅读交底书，重点关注技术方案是否清楚、创新点是否突出、是否存在公开风险等，并在Teambition上提交你的评审意见。</p>
                     </div>
                 </div>
 
                 <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
+                    <button class="faq-question" aria-expanded="false">
                         <h4>专利代理师的作用是什么？我该如何与他们配合？</h4>
-                        <span class="faq-icon">▼</span>
-                    </div>
-                    <div class="faq-answer">
+                        <span class="faq-icon" aria-hidden="true">▼</span>
+                    </button>
+                    <div class="faq-answer" role="region">
                         <p>专利代理师是连接技术和法律的桥梁。他们的主要作用是将技术语言转化为符合法律要求的专利文书（权利要求书、说明书等），以争取最宽泛、最稳定的保护范围。</p>
                         <div class="faq-info">
                             <strong>配合建议：</strong> 请您将其视为战友，积极配合，详细解释技术细节，并对代理师提出的问题给予及时、准确的反馈。
@@ -672,11 +733,11 @@
                 </div>
 
                 <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
+                    <button class="faq-question" aria-expanded="false">
                         <h4>在申请专利前，有哪些特别需要注意的？</h4>
-                        <span class="faq-icon">▼</span>
-                    </div>
-                    <div class="faq-answer">
+                        <span class="faq-icon" aria-hidden="true">▼</span>
+                    </button>
+                    <div class="faq-answer" role="region">
                         <div class="faq-warning">
                             <strong>最关键的"红线"是提前公开！</strong> 在提交专利申请之前，任何形式的公开都可能导致专利失效，例如：
                         </div>
@@ -690,11 +751,11 @@
                 </div>
 
                 <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
+                    <button class="faq-question" aria-expanded="false">
                         <h4>如何判断一个想法是否值得申请专利？</h4>
-                        <span class="faq-icon">▼</span>
-                    </div>
-                    <div class="faq-answer">
+                        <span class="faq-icon" aria-hidden="true">▼</span>
+                    </button>
+                    <div class="faq-answer" role="region">
                         <p>可以从以下几个角度考虑：</p>
                         <ul>
                             <li><strong>技术价值：</strong> 是否解决了行业痛点？是否带来了显著的技术进步？</li>
@@ -708,11 +769,11 @@
                 </div>
 
                 <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
+                    <button class="faq-question" aria-expanded="false">
                         <h4>如果我对专利申请流程有疑问，应该找谁？</h4>
-                        <span class="faq-icon">▼</span>
-                    </div>
-                    <div class="faq-answer">
+                        <span class="faq-icon" aria-hidden="true">▼</span>
+                    </button>
+                    <div class="faq-answer" role="region">
                         <ul>
                             <li><strong>流程性问题</strong>（如Teambition操作、节点审批）：请首先联系专利管理员。研发中心的专利管理员人员可能会变动，如果有流程上的问题想咨询，可以发送邮件给到<strong>patent@matridx.com</strong>。该邮箱是专利管理员的专用邮箱，会快速响应和答疑。</li>
                             <li><strong>技术性问题</strong>（如交底书内容、创新点提炼）：请与部门负责人或相关领域专家讨论。</li>
@@ -735,8 +796,9 @@
             </div>
 
             <div class="export-buttons">
-                <button class="export-btn" onclick="previewHTML()">📄 HTML预览</button>
-                <button class="export-btn secondary" onclick="downloadDoc()">📥 下载Word文档</button>
+                <button class="export-btn" id="preview-btn" aria-label="在页面内预览交底书">📄 HTML预览</button>
+                <button class="export-btn" id="print-btn" aria-label="打印或另存为PDF">🖨 打印 / 存PDF</button>
+                <button class="export-btn secondary" id="download-btn" aria-label="下载Word文档">📥 下载Word文档</button>
             </div>
 
             <div id="preview-container" style="display: none; margin-top: 20px;">
@@ -748,5 +810,6 @@
     </main>
 
     <script src="js/script.js"></script>
+    <script src="js/ai.js"></script>
 </body>
 </html>
